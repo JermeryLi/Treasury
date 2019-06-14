@@ -6,8 +6,4 @@ package com.lining.treasury.util.image;
  * @description ImageUtil
  */
 public class ImageUtil {
-
-    public static void test(){
-
-    }
 }
