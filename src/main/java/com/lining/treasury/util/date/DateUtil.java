@@ -13,6 +13,9 @@ import java.util.Date;
 public class DateUtil {
 
     public static final String yyyyMMddHHmmss = "yyyyMMddHHmmss";
+    public static final String yyyyMMdd = "yyyyMMdd";
+    private static final SimpleDateFormat yyyyMMddHHmmss_FORMAT = new SimpleDateFormat(yyyyMMddHHmmss);
+    private static final SimpleDateFormat yyyyMMdd_FORMAT = new SimpleDateFormat(yyyyMMdd);
 
     /**
      * 得到某个日期前几天或后几天的日期
@@ -21,7 +24,7 @@ public class DateUtil {
      * @return 日期
      */
     public static Date getBeforeOrAfterDayByCalendar(Date date, int days) {
-        if (days == 0){
+        if (days == 0) {
             return date;
         }
         Calendar calendar = Calendar.getInstance();
@@ -37,7 +40,7 @@ public class DateUtil {
      * @return String
      */
     public static String dateToString(Date date, String pattern) {
-        return new SimpleDateFormat(pattern).format(date);
+        return initSimpleDateFormat(pattern).format(date);
     }
 
     /**
@@ -45,15 +48,33 @@ public class DateUtil {
      * @param dateString 日期型字符串
      * @param pattern    转换格式
      * @return date
+     * @Exception 异常返回当前时间
      */
     public static Date stringToDate(String dateString, String pattern) {
-        Date date = null;
-        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+        Date date = new Date();
         try {
-            date = dateFormat.parse(dateString);
+            date = initSimpleDateFormat(pattern).parse(dateString);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return date;
     }
+
+    /**
+     * 初始化Format
+     * @param pattern 转换格式
+     * @return SimpleDateFormat
+     */
+    private static SimpleDateFormat initSimpleDateFormat(String pattern) {
+        switch (pattern) {
+            case yyyyMMddHHmmss:
+                return yyyyMMddHHmmss_FORMAT;
+            case yyyyMMdd:
+                return yyyyMMdd_FORMAT;
+            default:
+                return new SimpleDateFormat(pattern);
+        }
+    }
+
+
 }
