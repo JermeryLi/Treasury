@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script th:src="@{/jquery/jquery.min.js}" charset="utf-8"></script>
+    <title>excel</title>
+    <style>
+        .excel{
+            width: 50%;
+            height: 50%;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div onclick="excelWrite()" class="excel">按钮</div>
+</body>
+<script type="text/javascript" th:inline="javascript">
+     /*<![CDATA[*/
+       ctxPath = /*[[@{/}]]*/ '';
+     /*]]>*/
+    function excelWrite(){
+        location.href = ctxPath + "/excel/write"
+     }
+</script>
+</html>

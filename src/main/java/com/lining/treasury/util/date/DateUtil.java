@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author lining
@@ -16,6 +17,7 @@ public class DateUtil {
     public static final String yyyyMMdd = "yyyyMMdd";
     private static final SimpleDateFormat yyyyMMddHHmmss_FORMAT = new SimpleDateFormat(yyyyMMddHHmmss);
     private static final SimpleDateFormat yyyyMMdd_FORMAT = new SimpleDateFormat(yyyyMMdd);
+    private static final String[] timeFormatArray = {yyyyMMddHHmmss, yyyyMMdd};
 
     /**
      * 得到某个日期前几天或后几天的日期
@@ -56,6 +58,7 @@ public class DateUtil {
             date = initSimpleDateFormat(pattern).parse(dateString);
         } catch (ParseException e) {
             e.printStackTrace();
+            return date;
         }
         return date;
     }
@@ -66,15 +69,11 @@ public class DateUtil {
      * @return SimpleDateFormat
      */
     private static SimpleDateFormat initSimpleDateFormat(String pattern) {
-        switch (pattern) {
-            case yyyyMMddHHmmss:
-                return yyyyMMddHHmmss_FORMAT;
-            case yyyyMMdd:
-                return yyyyMMdd_FORMAT;
-            default:
-                return new SimpleDateFormat(pattern);
+        for (String timeFormat : timeFormatArray) {
+            if (timeFormat.equals(pattern)) {
+                return new SimpleDateFormat(timeFormat);
+            }
         }
+        return new SimpleDateFormat(pattern);
     }
-
-
 }
