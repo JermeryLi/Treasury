@@ -15,7 +15,7 @@ public class LockSupportDemo {
 
         t1 = new Thread(() -> {
             for (char word : words) {
-                System.out.println(word);
+                System.out.print(word);
                 LockSupport.unpark(t2);
                 LockSupport.park();
             }
@@ -25,7 +25,7 @@ public class LockSupportDemo {
         t2 = new Thread(() -> {
             for (char number : numbers) {
                 LockSupport.park();
-                System.out.println(number);
+                System.out.print(number);
                 LockSupport.unpark(t1);
             }
         }, "t2");
