@@ -1,5 +1,7 @@
 package com.lining.treasury.java.lambda.methodReference;
 
+import java.util.Objects;
+
 /**
  * @author lining
  */
@@ -20,13 +22,41 @@ public class Employee {
     public Employee() {
         System.out.println("employee.....");
     }
-    public Employee(int id){
+
+    public Employee(int id) {
         this.id = id;
     }
 
     public Employee(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Employee employee = (Employee) o;
+        return id == employee.id && age == employee.age && Double.compare(employee.salary, salary) == 0 && name.equals(employee.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, age, salary);
     }
 
     public int getId() {
