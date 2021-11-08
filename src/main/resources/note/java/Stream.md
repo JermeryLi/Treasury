@@ -45,7 +45,7 @@
 * Stream.of
 
   ```java
-  Stream.of
+  Stream<Integer> stream = Stream.of(1,2,3,4,6);
   ```
 
 * 无限流
