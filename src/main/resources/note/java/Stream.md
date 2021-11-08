@@ -60,5 +60,41 @@
 ## 中间操作
 
 * 筛选与切片
+
+  ```java
+  List<Employee> employees = EmployeeData.getEmployees();
+  ```
+
+  * 过滤
+
+    ```java
+    Stream<Employee> employeeStream = employees.stream();
+    employeeStream.filter(e -> e.getSalary() > 7000).forEach(e -> System.out.println(e.getName()));
+    ```
+
+  * 截断
+
+    ```java
+    Stream<Employee> employeeStream2 = employees.stream();
+    employeeStream2.limit(3).forEach(System.out::println);
+    ```
+
+  * 跳过
+
+    ```java
+    Stream<Employee> employeeStream3 = employees.stream();
+    employeeStream3.skip(3).forEach(System.out::println);
+    ```
+
+  * 筛选去重
+
+    ```java
+    Stream<Employee> employeeStream4 = employees.stream();
+    employeeStream4.distinct().forEach(System.out::println);
+    ```
+
+    
+
 * 映射
+
 * 排序
