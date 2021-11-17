@@ -4,7 +4,7 @@ import com.lining.treasury.java.lambda.methodReference.Employee;
 import com.lining.treasury.java.lambda.methodReference.EmployeeData;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
@@ -36,4 +36,38 @@ public class StreamAPITest2 {
 
 
     }
+
+    @Test
+    public void test2(){
+        //映射
+        List<String> list = Arrays.asList("aa","bb","cc","dd");
+        list.stream().map(str -> str.toUpperCase()).forEach(System.out::println);
+        list.stream().map(String::toUpperCase).forEach(System.out::println);
+        //获取员工姓名长度大于3的员工的姓名。
+
+        List<Employee> employees = EmployeeData.getEmployees();
+        Stream<String> stringStream = employees.stream().map(Employee::getName);
+        stringStream.filter(name -> name.length() > 3).forEach(System.out::println);
+
+
+        employees.stream().filter(employee -> employee.getName().length() > 3).forEach(System.out::println);
+        employees.stream().filter(employee -> employee.getName().length() > 3).forEach(employee -> System.out.println(employee.getName()));
+
+    }
+
+    @Test
+    public void test3(){
+        //排序
+        //自然排序
+        List<Integer> list = Arrays.asList(12, 12, 34, 13, 1, 4, 65);
+        List<Integer> list2 = new ArrayList<>();
+        list.stream().sorted().forEach(list2::add);
+        list2.stream().forEach(System.out::println);
+
+        //比较器排序
+        List<Employee> employees = EmployeeData.getEmployees();
+        employees.stream().sorted(Comparator.comparingInt(Employee::getAge)).forEach(System.out::println);
+
+    }
+
 }

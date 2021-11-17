@@ -98,3 +98,41 @@
 * 映射
 
 * 排序
+
+| 方法                   | 描述                             |
+| ---------------------- | -------------------------------- |
+| sorted()               | 产生一个新流，其中按自然顺序排序 |
+| sorted(Comparator com) | 产生一个新流，比较器排序         |
+
+
+
+## 终止操作
+
+* 匹配与查找
+
+  allMatch()
+
+  anyMatch()
+
+  noneMatch()
+
+  findFirst()
+
+  findAny()
+
+  count()
+
+  max(Comparator c)
+
+  min(Comparator c)
+
+  forEach()
+
+* 归约
+
+* 收集
+
+  | 方法       | 描述 |
+  | ---------- | ---- |
+  | collectors |      |
+
