@@ -271,7 +271,7 @@ exit
   ```shell
   # 我们使用容器通常都是后台方式运行的 需要进入容器，需要修改一些配置
   
-  docker exec it 容器id bashShell
+  docker exec -it 容器id bashShell
   
   
   docker run -d centos /bin/sh -c "while true;do echo kuangshen;sleep 1;done"
