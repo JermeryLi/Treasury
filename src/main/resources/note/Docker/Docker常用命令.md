@@ -211,9 +211,94 @@ exit
   docker kill id
   ```
 
+* docker run  -d
+
+  ```shell
+  docker run -d centos
+  docker ps
+  # 发现centos 停止了
+  # docker容器后台运行时，就必须有一个前台进程。否则docker就会自动停止它。
+  # nginx
+  ```
+
+* 查看日志
+
+  ```shell
+  docker logs --help
   
+  Usage:  docker logs [OPTIONS] CONTAINER
+  
+  Fetch the logs of a container
+  
+  Options:
+        --details        Show extra details provided to logs
+    -f, --follow         Follow log output
+        --since string   Show logs since timestamp (e.g.
+                         2013-01-02T13:23:37Z) or relative
+                         (e.g. 42m for 42 minutes)
+    -n, --tail string    Number of lines to show from the end
+                         of the logs (default "all")
+    -t, --timestamps     Show timestamps
+        --until string   Show logs before a timestamp (e.g.
+                         2013-01-02T13:23:37Z) or relative
+                         (e.g. 42m for 42 minutes)
+  
+  ```
 
+  ```shell
+  -tf
+  # n表示要显示的记录条数
+  --tail n 
+  docker logs -tf --tail 10 id
+  ```
+  
+* 查看容器中的进程信息
 
+  ```shell
+  docker top id
+  ```
+
+* 查看镜像元数据
+
+  ```shell
+  docker inspect --help
+  
+  docker inspect id
+  ```
+
+* 进入正在当前运行的容器
+
+  ```shell
+  # 我们使用容器通常都是后台方式运行的 需要进入容器，需要修改一些配置
+  
+  docker exec -it 容器id bashShell
+  
+  
+  docker run -d centos /bin/sh -c "while true;do echo kuangshen;sleep 1;done"
+  
+  docker ps
+  CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS              PORTS     NAMES
+  f2195f1fbf13   centos    "/bin/sh -c 'while t…"   About a minute ago   Up About a minute             romantic_leakey
+  
+  docker exec -it f2195f1fbf13 /bin/bash
+  
+  # 进入容器后，开启一个新的终端。常用
+  ```
+
+  ```shell
+  docker attach 容器id
+  # 进入容器正在执行的代码
+  ```
+
+* 从容器拷贝文件到主机
+
+  ```shell
+  docker cp 容器id:容器文件路径 主机路径
+  
+  docker cp 0c5e74720bb9:/home/test.java /
+  ```
+
+  
 
 
 
